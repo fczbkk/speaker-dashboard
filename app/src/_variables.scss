@@ -1,0 +1,18 @@
+$baseSize: 20px;
+
+$baseHue: 200;
+$hueShift: 360 / 3;
+$saturationShift: 20;
+$saturationHigh: 100 - $saturationShift;
+$saturationLow: $saturationShift;
+$baseLightness: 50;
+$lightnessShift: 20;
+$lightnessLow: 0 + $lightnessShift;
+$lightnessHigh: 100 - $lightnessShift;
+
+$colorPrimary: hsl($baseHue, $saturationHigh, $baseLightness);
+$colorSecondary: hsl($baseHue - $hueShift, $saturationHigh, $baseLightness);
+$colorTernary: hsl($baseHue + $hueShift, $saturationHigh, $baseLightness);
+$colorLight: hsl($baseHue, $saturationLow, $lightnessHigh);
+$colorMedium: hsl($baseHue, $saturationLow, $baseLightness);
+$colorDark: hsl($baseHue, $saturationLow, $lightnessLow);
