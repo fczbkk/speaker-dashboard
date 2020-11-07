@@ -5,18 +5,8 @@
 </template>
 
 <style lang="scss">
+  @import './global.scss';
   @import 'variables';
-
-  * {
-    font-size: $baseSize;
-    line-height: $baseSize * 1.5;
-  }
-
-  body {
-    background: $colorDark;
-    color: $colorLight;
-    font-family: helvetica, arial, sans-serif;
-  }
 
   a {
     color: $colorTernary;
