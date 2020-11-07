@@ -1,8 +1,8 @@
-import ProgressBar from '../components/ProgressBar.vue'
+import ProgressClock from '../components/ProgressClock.vue'
 
 export default {
-  title: 'Progress Bar',
-  component: ProgressBar,
+  title: 'Progress Clock',
+  component: ProgressClock,
   argTypes: {
     value: {
       control: {
@@ -17,8 +17,8 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { ProgressBar },
-  template: '<progress-bar v-bind="$props" />',
+  components: { ProgressClock },
+  template: '<progress-clock v-bind="$props" />',
 });
 
 export const Primary = Template.bind({});
