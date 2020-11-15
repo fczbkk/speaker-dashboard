@@ -26,11 +26,8 @@ name: "ProgressBar",
 <style scoped lang="scss">
   @import '../variables';
 
-  .progressBar {
-    // border: 1px solid red;
-  }
   .progressIndicator {
     background: $colorMedium;
-    line-height: 1rem;
+    height: 100%;
   }
 </style>
