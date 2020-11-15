@@ -2,7 +2,16 @@
   <svg :width="outerCircleSize" :height="outerCircleSize" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <circle cx="50" cy="50" :r="size/2" class="outerCircle"/>
     <circle cx="50" cy="50" :r="innerCircleRadius" class="innerCircle"/>
-    <path :d="arcPath" class="arc"/>
+    <path
+      v-if="value > 0 && value < 1"
+      :d="arcPath"
+      class="arc"
+    />
+    <path
+      v-if="value === 1"
+      d="M 30 40 L 50 60 L 80 30"
+      class="checkmark"
+    />
 </svg>
 </template>
 
@@ -61,5 +70,10 @@ export default {
   }
   .arc {
     fill: $colorLight;
+  }
+  .checkmark {
+    stroke: $colorLight;
+    stroke-width: 10;
+    fill: none;
   }
 </style>
