@@ -1,62 +1,62 @@
 <template>
-  <div>
-    <h1>This is main headline</h1>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation <a>ullamco laboris nisi</a> ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-    <div>
-      <button class="actionPrimary">Primary action</button>
-      <button class="actionSecondary">Secondary action</button>
+  <div class="layout">
+    <div class="layoutItem corner">corner</div>
+    <div class="layoutItem header">header</div>
+    <div class="layoutItem sidebar">
+      <ProgressBlock :bgValue="0.5">Prva sekcia</ProgressBlock>
+      <ProgressBlock :bgValue="0.2">Druha sekcia</ProgressBlock>
+      <ProgressBlock :bgValue="0.1">
+        Tretia sekcia
+        <template slot="left">
+          <ProgressClock :value="1" size="100%" />
+        </template>
+        <template slot="right">
+          <ProgressClock :value="0.75" size="100%" />
+        </template>
+      </ProgressBlock>
     </div>
-
-
-    <div class="colorSample colorPrimary"></div>
-    <div class="colorSample colorSecondary"></div>
-    <div class="colorSample colorTernary"></div>
-    <div class="colorSample colorLight"></div>
-    <div class="colorSample colorMedium"></div>
-    <div class="colorSample colorDark"></div>
+    <div class="layoutItem mainframe">
+      <h1>Toto je nadpis aktualnej sekcie</h1>
+      <MarkdownContent :content="sectionContent" />
+    </div>
   </div>
 </template>
 
 <script>
+import MarkdownContent from '@/components/MarkdownContent.vue'
+import ProgressBlock from '@/components/ProgressBlock.vue'
+import ProgressClock from '@/components/ProgressClock.vue'
 export default {
   name: 'Home',
-  components: {}
+  components: { ProgressClock, ProgressBlock, MarkdownContent },
+  data () {
+    return {
+      sectionContent: `
+Toto je obsah sekcie.
+
+Obsahuje *naformatovany* **text**.
+
+- raz
+- dva
+- tri
+      `
+    }
+  }
 }
 </script>
 
 <style lang="scss">
   @import '../variables';
 
-  .colorPrimary {
-    background: $colorPrimary;
+  .layout {
+    display: grid;
+    grid-template-columns: 30% auto;
+    grid-template-rows: (3 * $baseSize) auto;
+    width: 100vw;
+    height: 100vh;
   }
 
-  .colorSecondary {
-    background: $colorSecondary;
-  }
-
-  .colorTernary {
-    background: $colorTernary;
-  }
-
-  .colorLight {
-    background: $colorLight;
-  }
-
-  .colorMedium {
-    background: $colorMedium;
-  }
-
-  .colorDark {
-    background: $colorDark;
-  }
-
-  .colorSample {
-    display: inline-block;
-    width: 100px;
-    height: 100px;
-    line-height: 100px;
+  .mainframe {
+    padding: 2 * $baseSize;
   }
 </style>

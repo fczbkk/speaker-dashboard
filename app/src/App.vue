@@ -8,6 +8,11 @@
   @import './global.scss';
   @import 'variables';
 
+  body {
+    padding: 0;
+    margin: 0;
+  }
+
   a {
     color: $colorTernary;
   }
