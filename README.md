@@ -8,3 +8,4 @@ Záznam z tvorby aplikácie nájdeš na Youtube:
 2. [Založenie projektu, definícia farebnej schémy a neúspešný pokus rozbehať Storybook](https://youtu.be/LJkBef4UPhs)
 3. [Rozbehanie Storybooku, globálne štýly, komponenty pre progress indikátory](https://youtu.be/4LObgE2ig3s)
 4. [Zložené komponenty, parsovanie markdownu a základný layout aplikácie](https://youtu.be/NPn1NrjMrtw)
+5. [Začiatok logiky pre parsovanie obsahu z markdownu (testy, testy, testy)](https://youtu.be/mfKoGA8AhqM)
