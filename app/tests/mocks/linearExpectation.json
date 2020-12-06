@@ -1,0 +1,29 @@
+[
+  {
+    "title": "first main title",
+    "duration": 5,
+    "content": "first section content",
+    "level": 1
+  },
+  {
+    "title": "first subsection",
+    "content": "first subsection content",
+    "level": 2
+  },
+  {
+    "title": "third level",
+    "content": "third level content",
+    "level": 3
+  },
+  {
+    "title": "second subsection",
+    "duration": 10,
+    "content": "second subsection content",
+    "level": 2
+  },
+  {
+    "title": "second main section",
+    "content": "second section content\n\nanother paragraph of content",
+    "level": 1
+  }
+]

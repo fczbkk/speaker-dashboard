@@ -1,49 +1,93 @@
-export function splitMarkdownByHeaders (content, level = 1) {
-  const headerRe = new RegExp(`^#{${level}} `, 'gm')
-  return content
-    .split(headerRe)
-    .filter(Boolean)
-    .map((input) => input.trim())
-}
+const titleRe = /^(#+)\s+(.*)$/
+const metaDividerRe = /^---$/
+const metaContentRe = /^(.*): (.*)$/
+const trimLinesRe = /^\n+|\n+$/g
 
-export function parseSection (input, level = 1) {
-  const nextLevelRe = new RegExp(`^#{${level + 1}} `)
-
-  const [title, ...lines] = input.split(/\n/)
-
-  let isSubcontent = false
-  let content = ''
-  let subContent = ''
-
-  lines.forEach((line) => {
-    if (!isSubcontent && nextLevelRe.test(line)) {
-      isSubcontent = true
-    }
-    if (isSubcontent) {
-      subContent += '\n' + line
-    } else {
-      content += '\n' + line
-    }
-  })
-
-  // TODO parse sub content into sections
-  // TODO parse metadata
-
-  const subsections = []
-  const duration = -1
-
-  return {
-    title,
-    subsections,
-    duration,
-    content: content.trim()
+function finishSection (state) {
+  if (state.item) {
+    state.item.content = state.item.content
+      .join('\n')
+      .replace(trimLinesRe, '')
+    state.result.push({...state.item})
   }
 }
 
-export function contentParser (input) {
-  const result = {}
+function handleMetadata ({state, line}) {
+  const [, key, value] = metaContentRe.exec(line)
+  state.item[key] = Number(value)
+}
 
+function handleContent ({state, line}) {
+  state.item.content.push(line)
+}
 
+function handleTitle ({state, match}) {
+  state.isMetadata = false
+  const [, hashes, title] = match
+
+  finishSection(state)
+
+  state.item = {
+    title,
+    level: hashes.length,
+    content: []
+  }
+}
+
+function handleGeneralLine ({state, line}) {
+  if (state.isMetadata) {
+    handleMetadata({state, line})
+  } else {
+    handleContent({state, line})
+  }
+}
+
+function handleMetaDivider ({state}) {
+  state.isMetadata = !state.isMetadata
+}
+
+const stateHandlers = [
+  {re: titleRe, handler: handleTitle},
+  {re: metaDividerRe, handler: handleMetaDivider},
+  {re: /.*/, handler: handleGeneralLine}
+]
+
+function handleLine (state, line) {
+  for (const {re, handler} of stateHandlers) {
+    const match = re.exec(line)
+    if (match) {
+      handler({state, line, match})
+      return
+    }
+  }
+}
+
+export function parseMarkdown (input = '') {
+  const state = {
+    result: [],
+    item: null,
+    isMetadata: false
+  }
+  const lines = input.split('\n')
+
+  lines.forEach((line) => handleLine(state, line))
+
+  finishSection(state)
+
+  return state.result
+}
+
+export function convertLinearDataToTree (input = '') {
+  const data = parseMarkdown(input)
+  const result = {children: []}
+  const pointers = new Map()
+  pointers.set(0, result)
+
+  data.forEach((node) => {
+    node.children = []
+    pointers.set(node.level, node)
+    pointers.get(node.level - 1).children.push(node)
+  })
 
   return result
 }
