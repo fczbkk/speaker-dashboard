@@ -9,4 +9,5 @@ Záznam z tvorby aplikácie nájdeš na Youtube:
 3. [Rozbehanie Storybooku, globálne štýly, komponenty pre progress indikátory](https://youtu.be/4LObgE2ig3s)
 4. [Zložené komponenty, parsovanie markdownu a základný layout aplikácie](https://youtu.be/NPn1NrjMrtw)
 5. [Začiatok logiky pre parsovanie obsahu z markdownu (testy, testy, testy)](https://youtu.be/mfKoGA8AhqM)
-5. [Parsovanie markdownu s metadatami pomocou stavových automatov](https://youtu.be/J9hN__qcR9g)
+6. [Parsovanie markdownu s metadatami pomocou stavových automatov](https://youtu.be/J9hN__qcR9g)
+7. [Výpis aktuálneho, cieľového a zvyšného času v hlavičke](https://youtu.be/YCLFdna7Jlo)

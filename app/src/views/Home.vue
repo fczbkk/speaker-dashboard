@@ -1,7 +1,9 @@
 <template>
   <div class="layout">
     <div class="layoutItem corner">corner</div>
-    <div class="layoutItem header">header</div>
+    <div class="layoutItem header">
+      <TheHeader />
+    </div>
     <div class="layoutItem sidebar">
       <ProgressBlock :bgValue="0.5">Prva sekcia</ProgressBlock>
       <ProgressBlock :bgValue="0.2">Druha sekcia</ProgressBlock>
@@ -26,9 +28,10 @@
 import MarkdownContent from '@/components/MarkdownContent.vue'
 import ProgressBlock from '@/components/ProgressBlock.vue'
 import ProgressClock from '@/components/ProgressClock.vue'
+import TheHeader from '@/components/TheHeader.vue'
 export default {
   name: 'Home',
-  components: { ProgressClock, ProgressBlock, MarkdownContent },
+  components: { TheHeader, ProgressClock, ProgressBlock, MarkdownContent },
   data () {
     return {
       sectionContent: `
